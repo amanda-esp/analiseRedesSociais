@@ -24,4 +24,12 @@ CREATE(p:Posts{
         duracaoAnexo: posts.duracao_anexo,
         localizacao: posts.local_postagem,
         usuariosMarcados: posts.tags_usuarios
-})
+});
+
+MATCH (p:Posts)
+WHERE p.tipoAnexo IS NOT NULL
+SET p.tipoPost = 'Mídia';
+
+MATCH (p:Posts)
+WHERE p.tipoAnexo IS NULL
+SET p.tipoPost = 'Texto';
